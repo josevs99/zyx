@@ -1,0 +1,21 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://roach-single:26257/my_database?sslmode=disable
+    username: root
+    password:
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+  security:
+    user:
+      name: admin
+      password: secret
+
+server:
+  port: 8080
+

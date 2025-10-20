@@ -1,0 +1,37 @@
+
+services:
+  cockroach:
+    image: cockroachdb/cockroach:latest
+    container_name: roach-single
+    command: start-single-node --insecure
+    ports:
+      - "26257:26257" # SQL
+      - "8080:8080"   # Admin UI
+    volumes:
+      - cockroach-data:/cockroach/cockroach-data
+    networks:
+      - zyx-net
+
+
+  app:
+    build: ./app
+    container_name: zyx-api
+    ports:
+      - "8081:8080"
+    depends_on:
+      - cockroach
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://cockroach:26257/my_database?sslmode=disable
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+      SPRING_JPA_HIBERNATE_DDL_AUTO: none
+    networks:
+      - zyx-net
+
+
+volumes:
+  cockroach-data:
+
+networks: 
+   zyx-net:
+      driver: bridge
