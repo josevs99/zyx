@@ -1,0 +1,17 @@
+version: '3.9'
+
+services:
+  cockroach:
+    image: cockroachdb/cockroach:latest
+    container_name: roach-single
+    entrypoint: ["/bin/bash", "/init-db.sh"]
+    ports:
+      - "26257:26257"
+      - "8080:8080"
+    volumes:
+      - cockroach-data:/cockroach/cockroach-data
+      - ./init.sql:/init.sql
+      - ./init-db.sh:/init-db.sh   # mount script
+
+volumes:
+  cockroach-data:

@@ -1,0 +1,12 @@
+# Ignore Docker data volumes and logs
+cockroach-data/
+*.log
+
+# Ignore editor/system files
+.DS_Store
+.idea/
+.vscode/
+
+# Ignore temporary files
+*.tmp
+*.bak
