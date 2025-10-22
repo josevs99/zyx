@@ -9,6 +9,7 @@ services:
       - "8080:8080"   # Admin UI
     volumes:
       - cockroach-data:/cockroach/cockroach-data
+      - ./init.sql:/dbsource/init.sql
     networks:
       - zyx-net
 
@@ -27,6 +28,8 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: none
     networks:
       - zyx-net
+    volumes: 
+      - ./logs:/app/logs
 
 
 volumes:
