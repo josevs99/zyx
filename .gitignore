@@ -1,0 +1,22 @@
+## DB
+
+# Ignore Docker data volumes and logs
+dbource/cockroach-data/
+dbource/*.log
+
+# Ignore editor/system files
+dbource/.DS_Store
+**/.idea/
+dbource/.vscode/
+
+# Ignore temporary files
+**/*.tmp
+**/*.bak
+
+## APP 
+
+# Default ignored files
+app/shelf/
+app/workspace.xml
+ 
+logs/
