@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -e
+
+SERVICE="zyxcli"
+SCRIPT="/zyxcli/zyxcli.py"
+
+# No args → Interactive REPL
+if [ "$#" -eq 0 ]; then
+    echo "[zyxcli] Starting interactive mode..."
+    docker compose up -d $SERVICE >/dev/null 2>&1 || true
+    docker compose exec $SERVICE python $SCRIPT
+    exit $?
+fi
+
+# With args → one-shot execution
+docker compose up -d $SERVICE >/dev/null 2>&1 || true
+docker compose exec $SERVICE python $SCRIPT "$@"
+
