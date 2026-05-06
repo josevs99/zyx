@@ -41,6 +41,8 @@ services:
 
     volumes:
       - ./observability/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+
 
   grafana:
     image: grafana/grafana
@@ -49,12 +51,17 @@ services:
 
     ports:
       - "3000:3000"
+    
+    volumes: 
+     - grafana_data:/var/lib/grafana
 
     depends_on:
       - prometheus
 
 volumes:
   cockroach-data:
+  prometheus_data:
+  grafana_data:
 
 networks: 
    zyx-net:
