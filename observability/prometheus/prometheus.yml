@@ -9,4 +9,12 @@ scrape_configs:
 
     static_configs:
       - targets:
-          - host.docker.internal:8081
+          - app:8080
+
+  - job_name: 'cockroachdb'
+
+    metrics_path: '/_status/vars'
+
+    static_configs:
+      - targets:
+          - cockroach:8080

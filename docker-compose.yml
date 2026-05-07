@@ -43,6 +43,8 @@ services:
       - ./observability/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
       - prometheus_data:/prometheus
 
+    networks:
+      - zyx-net
 
   grafana:
     image: grafana/grafana
@@ -58,6 +60,8 @@ services:
     depends_on:
       - prometheus
 
+    networks:
+      - zyx-net
 volumes:
   cockroach-data:
   prometheus_data:
